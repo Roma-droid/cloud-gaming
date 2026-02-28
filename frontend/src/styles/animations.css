@@ -1,0 +1,242 @@
+/* Animations & Transitions */
+
+@keyframes screenFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes cardSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.game-card {
+    animation: cardSlideUp 0.3s ease-out forwards;
+}
+
+.game-card:nth-child(1) { animation-delay: 0.05s; }
+.game-card:nth-child(2) { animation-delay: 0.1s; }
+.game-card:nth-child(3) { animation-delay: 0.15s; }
+.game-card:nth-child(4) { animation-delay: 0.2s; }
+.game-card:nth-child(5) { animation-delay: 0.25s; }
+
+@keyframes pulseGreen {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.status-online::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #51CF66;
+    border-radius: 50%;
+    margin-right: 6px;
+    animation: pulseGreen 2s ease-in-out infinite;
+}
+
+@keyframes glowHover {
+    0%, 100% {
+        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.3);
+    }
+}
+
+.btn-primary:hover {
+    animation: glowHover 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+.game-thumbnail {
+    animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes videoFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.stream-video {
+    animation: videoFadeIn 0.5s ease-out;
+}
+
+@keyframes messageSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.chat-message {
+    animation: messageSlideIn 0.2s ease-out;
+}
+
+@keyframes notificationPopIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8) translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.notification {
+    animation: notificationPopIn 0.4s ease-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+
+.form-error {
+    animation: shake 0.3s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.btn-icon:active {
+    animation: bounce 0.2s ease-out;
+}
+
+.screen {
+    transition: opacity 300ms ease-in-out, visibility 300ms ease-in-out;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.search-input:focus {
+    transition: border-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+}
+
+.btn,
+.btn-icon,
+.game-card,
+.feature-card {
+    transition: all 200ms ease-in-out;
+}
+
+@keyframes overlayFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal:not(.hidden) {
+    animation: overlayFadeIn 150ms ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.modal:not(.hidden) .modal-content {
+    animation: modalSlideIn 200ms ease-out;
+}
+
+.header {
+    transition: all 200ms ease-in-out;
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+.hero {
+    animation: gradientShift 15s ease infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.settings-modal input[type="checkbox"]:checked::after {
+    animation: rotate 0.3s ease-out;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.screen-frame {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading-skeleton {
+    background: linear-gradient(90deg, var(--color-dark-2) 25%, var(--color-dark-3) 50%, var(--color-dark-2) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+}

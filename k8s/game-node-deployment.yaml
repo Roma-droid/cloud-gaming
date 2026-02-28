@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: cloud-gaming-game-node
+  namespace: cloud-gaming
+  labels:
+    app: cloud-gaming
+    component: game-node
+spec:
+  selector:
+    matchLabels:
+      app: cloud-gaming
+      component: game-node
+  template:
+    metadata:
+      labels:
+        app: cloud-gaming
+        component: game-node
+    spec:
+      # Only schedule on GPU-capable nodes
+      nodeSelector:
+        cloud-gaming/role: game-node
+      tolerations:
+        - key: nvidia.com/gpu
+          operator: Exists
+          effect: NoSchedule
+      containers:
+        - name: game-node-agent
+          image: cloud-gaming/backend:latest
+          command: ["python", "-m", "backend.scheduler.node_agent"]
+          envFrom:
+            - secretRef:
+                name: cloud-gaming-secrets
+            - configMapRef:
+                name: cloud-gaming-config
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "256Mi"
+            limits:
+              cpu: "1000m"
+              memory: "1Gi"
+              nvidia.com/gpu: "1"
+          volumeMounts:
+            - name: docker-sock
+              mountPath: /var/run/docker.sock
+      volumes:
+        - name: docker-sock
+          hostPath:
+            path: /var/run/docker.sock
+            type: Socket

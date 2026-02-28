@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CloudGaming - Играйте в игры из облака без установки">
+    <title>CloudGaming - Облачный геймнг</title>
+    <link rel="stylesheet" href="../src/styles/main.css">
+    <link rel="stylesheet" href="../src/styles/animations.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect fill='%23FF6B6B' width='100' height='100'/><text x='50' y='70' font-size='60' fill='white' text-anchor='middle' font-weight='bold'>CG</text></svg>">
+</head>
+<body>
+    <div id="app" class="app-container">
+        <!-- Landing Page -->
+        <div id="landing-screen" class="screen active">
+            <nav class="navbar">
+                <div class="navbar-container">
+                    <div class="logo">
+                        <span class="logo-icon">🎮</span>
+                        <span class="logo-text">CloudGaming</span>
+                    </div>
+                    <div class="navbar-actions">
+                        <button id="nav-login-btn" class="btn btn-secondary">Вход</button>
+                        <button id="nav-register-btn" class="btn btn-primary">Регистрация</button>
+                    </div>
+                </div>
+            </nav>
+
+            <main class="landing-main">
+                <section class="hero">
+                    <div class="hero-content">
+                        <h1>Играйте где угодно, когда угодно</h1>
+                        <p>Облачные игры без установки. Просто откройте браузер и наслаждайтесь.</p>
+                        <div class="hero-actions">
+                            <button id="hero-start-btn" class="btn btn-primary btn-large">Начать играть</button>
+                            <button id="hero-learn-btn" class="btn btn-secondary btn-large">Узнать больше</button>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <div class="game-preview">
+                            <div class="screen-frame">
+                                <div class="screen-content">
+                                    <div class="play-button">▶</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features">
+                    <h2>Почему выбрать CloudGaming?</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Мгновенный запуск</h3>
+                            <p>Включите игру без долгой установки и загрузки</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <h3>Любое устройство</h3>
+                            <p>Играйте на ПК, планшете или смартфоне</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">💾</div>
+                            <h3>Экономия места</h3>
+                            <p>Не нужно тратить место на жёстком диске</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h3>Безопасность</h3>
+                            <p>Защита данных на высоком уровне</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="cta-section">
+                    <h2>Готовы начать?</h2>
+                    <p>Создайте аккаунт и получите доступ к библиотеке игр</p>
+                    <button id="cta-register-btn" class="btn btn-primary btn-large">Зарегистрироваться бесплатно</button>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <p>&copy; 2026 CloudGaming. Все права защищены.</p>
+            </footer>
+        </div>
+
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="screen">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <button class="back-btn" id="auth-back-btn">← Назад</button>
+                        <h1 id="auth-title">Вход</h1>
+                    </div>
+
+                    <!-- Login Form -->
+                    <form id="login-form" class="auth-form active">
+                        <div class="form-group">
+                            <label for="login-username">Имя пользователя</label>
+                            <input 
+                                type="text" 
+                                id="login-username" 
+                                placeholder="Введите имя пользователя"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Пароль</label>
+                            <input 
+                                type="password" 
+                                id="login-password" 
+                                placeholder="Введите пароль"
+                                required>
+                        </div>
+                        <div id="login-error" class="form-error"></div>
+                        <button type="submit" class="btn btn-primary btn-full">Войти</button>
+                        <p class="form-footer">
+                            Нет аккаунта? 
+                            <button type="button" class="link-btn" id="login-to-register">Зарегистрироваться</button>
+                        </p>
+                    </form>
+
+                    <!-- Register Form -->
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="reg-username">Имя пользователя</label>
+                            <input 
+                                type="text" 
+                                id="reg-username" 
+                                placeholder="Минимум 3 символа"
+                                required minlength="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email</label>
+                            <input 
+                                type="email" 
+                                id="reg-email" 
+                                placeholder="your@email.com"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Пароль</label>
+                            <input 
+                                type="password" 
+                                id="reg-password" 
+                                placeholder="Минимум 8 символов"
+                                required minlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password-confirm">Подтвердите пароль</label>
+                            <input 
+                                type="password" 
+                                id="reg-password-confirm" 
+                                placeholder="Повторите пароль"
+                                required>
+                        </div>
+                        <div id="register-error" class="form-error"></div>
+                        <button type="submit" class="btn btn-primary btn-full">Зарегистрироваться</button>
+                        <p class="form-footer">
+                            Уже есть аккаунт? 
+                            <button type="button" class="link-btn" id="register-to-login">Войти</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Games Library Screen -->
+        <div id="library-screen" class="screen">
+            <header class="header">
+                <div class="header-container">
+                    <div class="header-left">
+                        <div class="logo">
+                            <span class="logo-icon">🎮</span>
+                            <span class="logo-text">CloudGaming</span>
+                        </div>
+                    </div>
+                    <div class="header-middle">
+                        <div class="search-box">
+                            <input 
+                                type="text" 
+                                id="search-games" 
+                                placeholder="Поиск игр..."
+                                class="search-input">
+                        </div>
+                    </div>
+                    <div class="header-right">
+                        <div class="user-menu">
+                            <span id="user-info" class="user-name"></span>
+                            <button id="user-settings-btn" class="btn-icon" title="Настройки">⚙️</button>
+                            <button id="logout-btn" class="btn btn-secondary">Выход</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <main class="library-main">
+                <section class="library-section">
+                    <h2>Доступные игры</h2>
+                    <div id="games-grid" class="games-grid">
+                        <!-- Games will be loaded here -->
+                    </div>
+                    <div id="games-loading" class="loading-spinner">
+                        <div class="spinner"></div>
+                        <p>Загрузка игр...</p>
+                    </div>
+                    <div id="games-error" class="error-message"></div>
+                </section>
+
+                <section class="active-sessions-section">
+                    <h2>Активные сессии</h2>
+                    <div id="active-sessions" class="sessions-list">
+                        <!-- Active sessions will be loaded here -->
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- Game Streaming Screen -->
+        <div id="stream-screen" class="screen">
+            <div class="stream-container">
+                <div class="stream-header">
+                    <h2 id="stream-game-title">Загрузка...</h2>
+                    <div class="stream-controls">
+                        <button id="settings-btn" class="btn-icon" title="Параметры">⚙️</button>
+                        <button id="fullscreen-btn" class="btn-icon" title="Полный экран">⛶</button>
+                        <button id="exit-game-btn" class="btn btn-danger">Выход</button>
+                    </div>
+                </div>
+
+                <div class="stream-content">
+                    <video id="stream-video" class="stream-video" autoplay playsinline></video>
+                    <canvas id="stream-canvas" class="stream-canvas" style="display:none;"></canvas>
+                    <div id="stream-controls" class="game-controls">
+                        <div class="control-info">
+                            <p id="connection-status" class="status-online">🟢 Подключено</p>
+                            <p id="stream-stats" class="stats">--/-- fps</p>
+                        </div>
+                        <div class="input-hints">
+                            <p>Используйте клавиатуру, мышь или геймпад для управления</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="stream-chat" class="stream-chat">
+                    <div class="chat-header">Чат</div>
+                    <div class="chat-messages" id="chat-messages"></div>
+                    <div class="chat-input">
+                        <input 
+                            type="text" 
+                            id="chat-input" 
+                            placeholder="Сообщение..."
+                            class="chat-field">
+                        <button id="chat-send" class="btn-small">Отправить</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading Overlay -->
+            <div id="stream-loading" class="stream-overlay loading">
+                <div class="overlay-content">
+                    <div class="spinner large"></div>
+                    <p>Запуск игры...</p>
+                </div>
+            </div>
+
+            <!-- Error Overlay -->
+            <div id="stream-error" class="stream-overlay error hidden">
+                <div class="overlay-content">
+                    <h3>Ошибка подключения</h3>
+                    <p id="stream-error-message"></p>
+                    <button id="stream-retry-btn" class="btn btn-primary">Повторить</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Параметры</h2>
+                    <button id="modal-close-btn" class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="settings-section">
+                        <h3>Видео</h3>
+                        <label>
+                            <input type="range" id="volume-slider" min="0" max="100" value="80">
+                            <span>Громкость</span>
+                        </label>
+                        <label>
+                            <select id="quality-select">
+                                <option value="low">Низкое качество</option>
+                                <option value="medium" selected>Среднее качество</option>
+                                <option value="high">Высокое качество</option>
+                            </select>
+                            <span>Качество потока</span>
+                        </label>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Управление</h3>
+                        <label>
+                            <input type="checkbox" id="gamepad-checkbox" checked>
+                            <span>Поддержка геймпада</span>
+                        </label>
+                        <label>
+                            <input type="checkbox" id="mouse-sensitivity-checkbox" checked>
+                            <span>Чувствительность мыши</span>
+                        </label>
+                    </div>
+                    <div class="settings-section">
+                        <h3>Профиль</h3>
+                        <button id="profile-btn" class="btn btn-secondary">Профиль</button>
+                        <button id="logout-settings-btn" class="btn btn-danger">Выход</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notification System -->
+        <div id="notifications" class="notifications-container"></div>
+    </div>
+
+    <script type="module" src="../src/components/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloud-gaming-config
+  namespace: cloud-gaming
+data:
+  APP_ENV: "production"
+  APP_DEBUG: "false"
+  APP_HOST: "0.0.0.0"
+  APP_PORT: "8000"
+  LOG_LEVEL: "INFO"
+  LOG_FORMAT: "json"
+  MAX_SESSIONS_PER_USER: "1"
+  SESSION_TIMEOUT_MINUTES: "120"
+  IDLE_TIMEOUT_MINUTES: "15"
+  DEFAULT_RESOLUTION: "1080p"
+  DEFAULT_FPS: "60"
+  MAX_BITRATE: "6000"
+  DOCKER_NETWORK: "cloud-gaming-net"
+  GAME_CONTAINER_CPU_LIMIT: "4.0"
+  GAME_CONTAINER_MEMORY_LIMIT: "8g"
+  GAME_CONTAINER_IMAGE: "cloud-gaming/game-node:latest"
+  STUN_SERVER: "stun:stun.l.google.com:19302"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cloud-gaming-secrets
+  namespace: cloud-gaming
+type: Opaque
+stringData:
+  SECRET_KEY: "CHANGE-ME-generate-with-openssl-rand-hex-32"
+  JWT_SECRET_KEY: "CHANGE-ME-jwt-secret-key"
+  DATABASE_URL: "postgresql+asyncpg://cloudgaming:cloudgaming@postgres:5432/cloudgaming"
+  REDIS_URL: "redis://redis:6379/0"
